@@ -1,0 +1,1128 @@
+[
+  {
+    "name": "Chamonix-Mont-Blanc",
+    "country": "France",
+    "region": "Auvergne-Rhône-Alpes",
+    "latitude": 45.9237,
+    "longitude": 6.8694,
+    "altitude_base_m": 1035,
+    "altitude_peak_m": 3842,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "LYS"
+    ],
+    "piste_count": 160,
+    "lift_count": 49
+  },
+  {
+    "name": "Zermatt",
+    "country": "Switzerland",
+    "region": "Valais",
+    "latitude": 46.0207,
+    "longitude": 7.7491,
+    "altitude_base_m": 1620,
+    "altitude_peak_m": 3883,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "ZRH"
+    ],
+    "piste_count": 360,
+    "lift_count": 54
+  },
+  {
+    "name": "Verbier",
+    "country": "Switzerland",
+    "region": "Valais",
+    "latitude": 46.0964,
+    "longitude": 7.2281,
+    "altitude_base_m": 1500,
+    "altitude_peak_m": 3330,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "SIR"
+    ],
+    "piste_count": 410,
+    "lift_count": 89
+  },
+  {
+    "name": "Ischgl",
+    "country": "Austria",
+    "region": "Tyrol",
+    "latitude": 47.0143,
+    "longitude": 10.2909,
+    "altitude_base_m": 1377,
+    "altitude_peak_m": 2872,
+    "mode": "sports",
+    "nearest_airports": [
+      "INN",
+      "MUC"
+    ],
+    "piste_count": 239,
+    "lift_count": 45
+  },
+  {
+    "name": "Val d'Isère",
+    "country": "France",
+    "region": "Auvergne-Rhône-Alpes",
+    "latitude": 45.4484,
+    "longitude": 6.9807,
+    "altitude_base_m": 1850,
+    "altitude_peak_m": 3456,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "LYS",
+      "TRN"
+    ],
+    "piste_count": 300,
+    "lift_count": 79
+  },
+  {
+    "name": "Courchevel",
+    "country": "France",
+    "region": "Auvergne-Rhône-Alpes",
+    "latitude": 45.4146,
+    "longitude": 6.6337,
+    "altitude_base_m": 1300,
+    "altitude_peak_m": 3230,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "LYS",
+      "CVF"
+    ],
+    "piste_count": 600,
+    "lift_count": 180
+  },
+  {
+    "name": "St. Anton am Arlberg",
+    "country": "Austria",
+    "region": "Tyrol",
+    "latitude": 47.1294,
+    "longitude": 10.2682,
+    "altitude_base_m": 1304,
+    "altitude_peak_m": 2811,
+    "mode": "sports",
+    "nearest_airports": [
+      "INN",
+      "FDH",
+      "MUC"
+    ],
+    "piste_count": 305,
+    "lift_count": 88
+  },
+  {
+    "name": "Kitzbühel",
+    "country": "Austria",
+    "region": "Tyrol",
+    "latitude": 47.4454,
+    "longitude": 12.3925,
+    "altitude_base_m": 762,
+    "altitude_peak_m": 2000,
+    "mode": "sports",
+    "nearest_airports": [
+      "INN",
+      "SZG",
+      "MUC"
+    ],
+    "piste_count": 200,
+    "lift_count": 57
+  },
+  {
+    "name": "Zakopane",
+    "country": "Poland",
+    "region": "Lesser Poland",
+    "latitude": 49.2992,
+    "longitude": 19.9496,
+    "altitude_base_m": 838,
+    "altitude_peak_m": 2499,
+    "mode": "sports",
+    "nearest_airports": [
+      "KRK",
+      "KTW"
+    ],
+    "piste_count": 55,
+    "lift_count": 29
+  },
+  {
+    "name": "Bansko",
+    "country": "Bulgaria",
+    "region": "Blagoevgrad",
+    "latitude": 41.8371,
+    "longitude": 23.4877,
+    "altitude_base_m": 1000,
+    "altitude_peak_m": 2560,
+    "mode": "sports",
+    "nearest_airports": [
+      "SOF",
+      "SKP"
+    ],
+    "piste_count": 75,
+    "lift_count": 14
+  },
+  {
+    "name": "Cervinia",
+    "country": "Italy",
+    "region": "Aosta Valley",
+    "latitude": 45.9356,
+    "longitude": 7.6285,
+    "altitude_base_m": 2050,
+    "altitude_peak_m": 3883,
+    "mode": "sports",
+    "nearest_airports": [
+      "TRN",
+      "MXP",
+      "GVA"
+    ],
+    "piste_count": 350,
+    "lift_count": 53
+  },
+  {
+    "name": "Cortina d'Ampezzo",
+    "country": "Italy",
+    "region": "Veneto",
+    "latitude": 46.5361,
+    "longitude": 12.1395,
+    "altitude_base_m": 1224,
+    "altitude_peak_m": 3243,
+    "mode": "sports",
+    "nearest_airports": [
+      "VCE",
+      "TSF",
+      "BZO"
+    ],
+    "piste_count": 115,
+    "lift_count": 34
+  },
+  {
+    "name": "Wengen",
+    "country": "Switzerland",
+    "region": "Bern",
+    "latitude": 46.6079,
+    "longitude": 7.9222,
+    "altitude_base_m": 1274,
+    "altitude_peak_m": 2971,
+    "mode": "sports",
+    "nearest_airports": [
+      "ZRH",
+      "GVA",
+      "BRN"
+    ],
+    "piste_count": 213,
+    "lift_count": 45
+  },
+  {
+    "name": "Davos",
+    "country": "Switzerland",
+    "region": "Graubünden",
+    "latitude": 46.8033,
+    "longitude": 9.8374,
+    "altitude_base_m": 1560,
+    "altitude_peak_m": 2844,
+    "mode": "sports",
+    "nearest_airports": [
+      "ZRH",
+      "FDH"
+    ],
+    "piste_count": 320,
+    "lift_count": 56
+  },
+  {
+    "name": "Soldeu",
+    "country": "Andorra",
+    "region": "Canillo",
+    "latitude": 42.577,
+    "longitude": 1.6647,
+    "altitude_base_m": 1710,
+    "altitude_peak_m": 2640,
+    "mode": "sports",
+    "nearest_airports": [
+      "BCN",
+      "GRO"
+    ],
+    "piste_count": 210,
+    "lift_count": 34
+  },
+  {
+    "name": "Pas de la Casa",
+    "country": "Andorra",
+    "region": "Encamp",
+    "latitude": 42.5426,
+    "longitude": 1.7336,
+    "altitude_base_m": 2050,
+    "altitude_peak_m": 2640,
+    "mode": "sports",
+    "nearest_airports": [
+      "BCN",
+      "GRO"
+    ],
+    "piste_count": 210,
+    "lift_count": 31
+  },
+  {
+    "name": "Méribel",
+    "country": "France",
+    "region": "Auvergne-Rhône-Alpes",
+    "latitude": 45.4072,
+    "longitude": 6.5595,
+    "altitude_base_m": 1400,
+    "altitude_peak_m": 3230,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "LYS",
+      "CVF"
+    ],
+    "piste_count": 600,
+    "lift_count": 180
+  },
+  {
+    "name": "Les Deux Alpes",
+    "country": "France",
+    "region": "Auvergne-Rhône-Alpes",
+    "latitude": 45.0141,
+    "longitude": 6.1221,
+    "altitude_base_m": 1650,
+    "altitude_peak_m": 3600,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "LYS",
+      "GNB"
+    ],
+    "piste_count": 225,
+    "lift_count": 56
+  },
+  {
+    "name": "Sölden",
+    "country": "Austria",
+    "region": "Tyrol",
+    "latitude": 46.9615,
+    "longitude": 11.0006,
+    "altitude_base_m": 1377,
+    "altitude_peak_m": 3340,
+    "mode": "sports",
+    "nearest_airports": [
+      "INN",
+      "MUC"
+    ],
+    "piste_count": 148,
+    "lift_count": 33
+  },
+  {
+    "name": "Mayrhofen",
+    "country": "Austria",
+    "region": "Tyrol",
+    "latitude": 47.1676,
+    "longitude": 11.8671,
+    "altitude_base_m": 630,
+    "altitude_peak_m": 2500,
+    "mode": "sports",
+    "nearest_airports": [
+      "INN",
+      "SZG"
+    ],
+    "piste_count": 138,
+    "lift_count": 23
+  },
+  {
+    "name": "Grindelwald",
+    "country": "Switzerland",
+    "region": "Bern",
+    "latitude": 46.6245,
+    "longitude": 8.0374,
+    "altitude_base_m": 1034,
+    "altitude_peak_m": 2971,
+    "mode": "sports",
+    "nearest_airports": [
+      "ZRH",
+      "BRN"
+    ],
+    "piste_count": 213,
+    "lift_count": 45
+  },
+  {
+    "name": "Sestriere",
+    "country": "Italy",
+    "region": "Piedmont",
+    "latitude": 44.9585,
+    "longitude": 6.8771,
+    "altitude_base_m": 2035,
+    "altitude_peak_m": 2823,
+    "mode": "sports",
+    "nearest_airports": [
+      "TRN",
+      "MXP"
+    ],
+    "piste_count": 400,
+    "lift_count": 92
+  },
+  {
+    "name": "Madonna di Campiglio",
+    "country": "Italy",
+    "region": "Trentino-Alto Adige",
+    "latitude": 46.2318,
+    "longitude": 10.8262,
+    "altitude_base_m": 1522,
+    "altitude_peak_m": 2580,
+    "mode": "sports",
+    "nearest_airports": [
+      "VRN",
+      "TRN",
+      "BGY"
+    ],
+    "piste_count": 150,
+    "lift_count": 38
+  },
+  {
+    "name": "Oberstdorf",
+    "country": "Germany",
+    "region": "Bavaria",
+    "latitude": 47.4074,
+    "longitude": 10.2796,
+    "altitude_base_m": 815,
+    "altitude_peak_m": 2224,
+    "mode": "sports",
+    "nearest_airports": [
+      "FDH",
+      "MUC",
+      "INN"
+    ],
+    "piste_count": 74,
+    "lift_count": 30
+  },
+  {
+    "name": "Geilo",
+    "country": "Norway",
+    "region": "Viken",
+    "latitude": 60.5305,
+    "longitude": 8.2046,
+    "altitude_base_m": 800,
+    "altitude_peak_m": 1178,
+    "mode": "sports",
+    "nearest_airports": [
+      "BGO",
+      "OSL"
+    ],
+    "piste_count": 37,
+    "lift_count": 18
+  },
+  {
+    "name": "Hemsedal",
+    "country": "Norway",
+    "region": "Viken",
+    "latitude": 60.8665,
+    "longitude": 8.5658,
+    "altitude_base_m": 640,
+    "altitude_peak_m": 1497,
+    "mode": "sports",
+    "nearest_airports": [
+      "OSL",
+      "BGO"
+    ],
+    "piste_count": 52,
+    "lift_count": 23
+  },
+  {
+    "name": "Flaine",
+    "country": "France",
+    "region": "Auvergne-Rhône-Alpes",
+    "latitude": 46.006,
+    "longitude": 6.6792,
+    "altitude_base_m": 1600,
+    "altitude_peak_m": 2500,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "LYS"
+    ],
+    "piste_count": 265,
+    "lift_count": 80
+  },
+  {
+    "name": "Alpe d'Huez",
+    "country": "France",
+    "region": "Auvergne-Rhône-Alpes",
+    "latitude": 45.0902,
+    "longitude": 6.0676,
+    "altitude_base_m": 1860,
+    "altitude_peak_m": 3330,
+    "mode": "sports",
+    "nearest_airports": [
+      "GNB",
+      "LYS"
+    ],
+    "piste_count": 250,
+    "lift_count": 85
+  },
+  {
+    "name": "Livigno",
+    "country": "Italy",
+    "region": "Lombardy",
+    "latitude": 46.5379,
+    "longitude": 10.1361,
+    "altitude_base_m": 1816,
+    "altitude_peak_m": 3002,
+    "mode": "sports",
+    "nearest_airports": [
+      "BGY",
+      "MXP",
+      "ZRH"
+    ],
+    "piste_count": 115,
+    "lift_count": 31
+  },
+  {
+    "name": "Saas-Fee",
+    "country": "Switzerland",
+    "region": "Valais",
+    "latitude": 46.1081,
+    "longitude": 7.929,
+    "altitude_base_m": 1800,
+    "altitude_peak_m": 3600,
+    "mode": "sports",
+    "nearest_airports": [
+      "GVA",
+      "ZRH"
+    ],
+    "piste_count": 100,
+    "lift_count": 23
+  },
+  {
+    "name": "Arosa",
+    "country": "Switzerland",
+    "region": "Graubünden",
+    "latitude": 46.7823,
+    "longitude": 9.6783,
+    "altitude_base_m": 1739,
+    "altitude_peak_m": 2653,
+    "mode": "sports",
+    "nearest_airports": [
+      "ZRH",
+      "FDH"
+    ],
+    "piste_count": 70,
+    "lift_count": 15
+  },
+  {
+    "name": "Kaprun",
+    "country": "Austria",
+    "region": "Salzburg",
+    "latitude": 47.2681,
+    "longitude": 12.759,
+    "altitude_base_m": 786,
+    "altitude_peak_m": 3029,
+    "mode": "sports",
+    "nearest_airports": [
+      "SZG",
+      "INN"
+    ],
+    "piste_count": 130,
+    "lift_count": 57
+  },
+  {
+    "name": "Bad Gastein",
+    "country": "Austria",
+    "region": "Salzburg",
+    "latitude": 47.1189,
+    "longitude": 13.1338,
+    "altitude_base_m": 1080,
+    "altitude_peak_m": 2687,
+    "mode": "sports",
+    "nearest_airports": [
+      "SZG",
+      "GRZ"
+    ],
+    "piste_count": 201,
+    "lift_count": 45
+  },
+  {
+    "name": "Schladming",
+    "country": "Austria",
+    "region": "Styria",
+    "latitude": 47.3939,
+    "longitude": 13.6888,
+    "altitude_base_m": 745,
+    "altitude_peak_m": 2015,
+    "mode": "sports",
+    "nearest_airports": [
+      "GRZ",
+      "SZG"
+    ],
+    "piste_count": 230,
+    "lift_count": 44
+  },
+  {
+    "name": "Bormio",
+    "country": "Italy",
+    "region": "Lombardy",
+    "latitude": 46.4678,
+    "longitude": 10.3688,
+    "altitude_base_m": 1225,
+    "altitude_peak_m": 3012,
+    "mode": "sports",
+    "nearest_airports": [
+      "BGY",
+      "MXP",
+      "ZRH"
+    ],
+    "piste_count": 50,
+    "lift_count": 11
+  },
+  {
+    "name": "Serre Chevalier",
+    "country": "France",
+    "region": "Provence-Alpes-Côte d'Azur",
+    "latitude": 44.9248,
+    "longitude": 6.5402,
+    "altitude_base_m": 1350,
+    "altitude_peak_m": 2800,
+    "mode": "sports",
+    "nearest_airports": [
+      "TRN",
+      "LYS",
+      "NCE"
+    ],
+    "piste_count": 250,
+    "lift_count": 65
+  },
+  {
+    "name": "Vars",
+    "country": "France",
+    "region": "Provence-Alpes-Côte d'Azur",
+    "latitude": 44.5604,
+    "longitude": 6.7011,
+    "altitude_base_m": 1650,
+    "altitude_peak_m": 2750,
+    "mode": "sports",
+    "nearest_airports": [
+      "TRN",
+      "NCE"
+    ],
+    "piste_count": 185,
+    "lift_count": 55
+  },
+  {
+    "name": "Kranjska Gora",
+    "country": "Slovenia",
+    "region": "Upper Carniola",
+    "latitude": 46.4839,
+    "longitude": 13.7886,
+    "altitude_base_m": 810,
+    "altitude_peak_m": 1570,
+    "mode": "sports",
+    "nearest_airports": [
+      "LJU",
+      "VCE",
+      "TRS"
+    ],
+    "piste_count": 30,
+    "lift_count": 20
+  },
+  {
+    "name": "Poiana Brasov",
+    "country": "Romania",
+    "region": "Brașov",
+    "latitude": 45.5905,
+    "longitude": 25.5561,
+    "altitude_base_m": 1020,
+    "altitude_peak_m": 1802,
+    "mode": "sports",
+    "nearest_airports": [
+      "OTP",
+      "BBU"
+    ],
+    "piste_count": 25,
+    "lift_count": 10
+  },
+  {
+    "name": "Spindleruv Mlyn",
+    "country": "Czech Republic",
+    "region": "Hradec Králové",
+    "latitude": 50.7271,
+    "longitude": 15.6094,
+    "altitude_base_m": 715,
+    "altitude_peak_m": 1310,
+    "mode": "sports",
+    "nearest_airports": [
+      "PRG",
+      "WRO"
+    ],
+    "piste_count": 40,
+    "lift_count": 22
+  },
+  {
+    "name": "Hallstatt",
+    "country": "Austria",
+    "region": "Upper Austria",
+    "latitude": 47.5622,
+    "longitude": 13.6493,
+    "altitude_base_m": 511,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "SZG",
+      "VIE"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Innsbruck",
+    "country": "Austria",
+    "region": "Tyrol",
+    "latitude": 47.2692,
+    "longitude": 11.4041,
+    "altitude_base_m": 574,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "INN"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Salzburg",
+    "country": "Austria",
+    "region": "Salzburg",
+    "latitude": 47.8095,
+    "longitude": 13.055,
+    "altitude_base_m": 425,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "SZG"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Garmisch-Partenkirchen",
+    "country": "Germany",
+    "region": "Bavaria",
+    "latitude": 47.4919,
+    "longitude": 11.0954,
+    "altitude_base_m": 708,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "MUC",
+      "INN"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Český Krumlov",
+    "country": "Czech Republic",
+    "region": "South Bohemia",
+    "latitude": 48.8126,
+    "longitude": 14.3175,
+    "altitude_base_m": 490,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "PRG",
+      "LNZ"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Rothenburg ob der Tauber",
+    "country": "Germany",
+    "region": "Bavaria",
+    "latitude": 49.3782,
+    "longitude": 10.1806,
+    "altitude_base_m": 425,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "NUE",
+      "STR"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Strasbourg",
+    "country": "France",
+    "region": "Grand Est",
+    "latitude": 48.5734,
+    "longitude": 7.7521,
+    "altitude_base_m": 143,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "SXB",
+      "BSL",
+      "FKB"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Colmar",
+    "country": "France",
+    "region": "Grand Est",
+    "latitude": 48.0793,
+    "longitude": 7.3585,
+    "altitude_base_m": 194,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "BSL",
+      "SXB"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Bruges",
+    "country": "Belgium",
+    "region": "West Flanders",
+    "latitude": 51.2093,
+    "longitude": 3.2247,
+    "altitude_base_m": 5,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "BRU",
+      "OST"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Lucerne",
+    "country": "Switzerland",
+    "region": "Lucerne",
+    "latitude": 47.0502,
+    "longitude": 8.3093,
+    "altitude_base_m": 435,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "ZRH",
+      "BSL"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Interlaken",
+    "country": "Switzerland",
+    "region": "Bern",
+    "latitude": 46.6863,
+    "longitude": 7.8632,
+    "altitude_base_m": 567,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "ZRH",
+      "BRN"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Montreux",
+    "country": "Switzerland",
+    "region": "Vaud",
+    "latitude": 46.4312,
+    "longitude": 6.9107,
+    "altitude_base_m": 395,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "GVA",
+      "ZRH"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Berchtesgaden",
+    "country": "Germany",
+    "region": "Bavaria",
+    "latitude": 47.6326,
+    "longitude": 13.0027,
+    "altitude_base_m": 572,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "SZG",
+      "MUC"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Fussen",
+    "country": "Germany",
+    "region": "Bavaria",
+    "latitude": 47.5709,
+    "longitude": 10.6987,
+    "altitude_base_m": 800,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "MUC",
+      "FDH",
+      "INN"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Krakow",
+    "country": "Poland",
+    "region": "Lesser Poland",
+    "latitude": 50.0647,
+    "longitude": 19.945,
+    "altitude_base_m": 219,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "KRK"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Wroclaw",
+    "country": "Poland",
+    "region": "Lower Silesia",
+    "latitude": 51.1079,
+    "longitude": 17.0385,
+    "altitude_base_m": 121,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "WRO"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Prague",
+    "country": "Czech Republic",
+    "region": "Prague",
+    "latitude": 50.0755,
+    "longitude": 14.4378,
+    "altitude_base_m": 235,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "PRG"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Vienna",
+    "country": "Austria",
+    "region": "Vienna",
+    "latitude": 48.2082,
+    "longitude": 16.3738,
+    "altitude_base_m": 171,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "VIE"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Bern",
+    "country": "Switzerland",
+    "region": "Bern",
+    "latitude": 46.948,
+    "longitude": 7.4474,
+    "altitude_base_m": 542,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "BRN",
+      "ZRH"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Tallinn",
+    "country": "Estonia",
+    "region": "Harju",
+    "latitude": 59.437,
+    "longitude": 24.7536,
+    "altitude_base_m": 39,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "TLL"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Riga",
+    "country": "Latvia",
+    "region": "Riga",
+    "latitude": 56.946,
+    "longitude": 24.1059,
+    "altitude_base_m": 10,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "RIX"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Gdansk",
+    "country": "Poland",
+    "region": "Pomerania",
+    "latitude": 54.352,
+    "longitude": 18.6466,
+    "altitude_base_m": 13,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "GDN"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Heidelberg",
+    "country": "Germany",
+    "region": "Baden-Württemberg",
+    "latitude": 49.3988,
+    "longitude": 8.6724,
+    "altitude_base_m": 114,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "FRA",
+      "STR"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Nuremberg",
+    "country": "Germany",
+    "region": "Bavaria",
+    "latitude": 49.4521,
+    "longitude": 11.0767,
+    "altitude_base_m": 309,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "NUE"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Ljubljana",
+    "country": "Slovenia",
+    "region": "Central Slovenia",
+    "latitude": 46.0569,
+    "longitude": 14.5058,
+    "altitude_base_m": 298,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "LJU",
+      "TRS"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Ghent",
+    "country": "Belgium",
+    "region": "East Flanders",
+    "latitude": 51.0543,
+    "longitude": 3.7174,
+    "altitude_base_m": 10,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "BRU",
+      "ANR"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Tromsø",
+    "country": "Norway",
+    "region": "Troms",
+    "latitude": 69.6492,
+    "longitude": 18.9553,
+    "altitude_base_m": 10,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "TOS"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Bergen",
+    "country": "Norway",
+    "region": "Vestland",
+    "latitude": 60.3913,
+    "longitude": 5.3221,
+    "altitude_base_m": 4,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "BGO"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Annecy",
+    "country": "France",
+    "region": "Auvergne-Rhône-Alpes",
+    "latitude": 45.8992,
+    "longitude": 6.1294,
+    "altitude_base_m": 448,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "GVA",
+      "LYS"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  },
+  {
+    "name": "Konstanz",
+    "country": "Germany",
+    "region": "Baden-Württemberg",
+    "latitude": 47.6779,
+    "longitude": 9.1732,
+    "altitude_base_m": 407,
+    "altitude_peak_m": null,
+    "mode": "tourism",
+    "nearest_airports": [
+      "FDH",
+      "ZRH",
+      "BSL"
+    ],
+    "piste_count": null,
+    "lift_count": null
+  }
+]

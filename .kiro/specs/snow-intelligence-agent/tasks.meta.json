@@ -1,0 +1,399 @@
+{
+  "pbtResults": {
+    "5.3 Write property tests for gate logic": {
+      "status": "passed",
+      "lastRunTimestamp": 1789298344263
+    }
+  },
+  "executionHistory": {
+    "1. Initialise project structure and development environment": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750575
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294756407
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295020447
+      }
+    ],
+    "2.1 Create SQLAlchemy ORM models for `resorts`, `weekly_runs`, and `snow_scores`": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750645
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295023273
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295604482
+      }
+    ],
+    "2.2 Create Alembic baseline migration": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750688
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295611064
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295805510
+      }
+    ],
+    "2.3 Write smoke test for schema creation": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750736
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295808026
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297530805
+      }
+    ],
+    "2.4 Create pytest fixtures and test configuration": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750771
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297533670
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297956417
+      }
+    ],
+    "3. Docker Compose service definition": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750809
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295023604
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295605030
+      }
+    ],
+    "4.1 Create resort seed data file": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750839
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789295808596
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297450505
+      }
+    ],
+    "4.2 Implement resort seeding script": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750871
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297535166
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297956138
+      }
+    ],
+    "4.3 Write smoke test for resort seeding": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750901
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297959500
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298041618
+      }
+    ],
+    "5.1 Create scoring Pydantic schemas": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750930
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297960019
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298042065
+      }
+    ],
+    "5.2 Implement gate logic": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750964
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298044903
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298100127
+      }
+    ],
+    "5.3 Write property tests for gate logic": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294750996
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298102919
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298356900
+      }
+    ],
+    "6.1 Implement depth, forecast, historical, and total scoring functions": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294751037
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298103619
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298357487
+      }
+    ],
+    "6.2 Write property tests for scoring functions": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294751086
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298360565
+      },
+      {
+        "executionId": "c8101391-6033-4135-b446-be1b6e17c6a8",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790888301946
+      }
+    ],
+    "7.1 Implement the Open-Meteo client": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294751113
+      },
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298360982
+      },
+      {
+        "executionId": "c8101391-6033-4135-b446-be1b6e17c6a8",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790888405235
+      }
+    ],
+    "7.2 Write integration tests for Open-Meteo client": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294751140
+      },
+      {
+        "executionId": "58734507-31cd-409c-be5b-d9553ec92e8f",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790890240619
+      },
+      {
+        "executionId": "58734507-31cd-409c-be5b-d9553ec92e8f",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790890801744
+      }
+    ],
+    "8.1 Implement the weekly run orchestrator": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294751170
+      },
+      {
+        "executionId": "58734507-31cd-409c-be5b-d9553ec92e8f",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790890241080
+      },
+      {
+        "executionId": "58734507-31cd-409c-be5b-d9553ec92e8f",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790890802005
+      }
+    ],
+    "8.2 Write property and integration tests for weekly run orchestrator": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294751197
+      },
+      {
+        "executionId": "58734507-31cd-409c-be5b-d9553ec92e8f",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790890819057
+      },
+      {
+        "executionId": "20ded684-76c4-40c5-bf4c-61db5c072b89",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790892530807
+      }
+    ],
+    "9.1 Implement APScheduler job and wire into FastAPI lifespan": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294751230
+      },
+      {
+        "executionId": "58734507-31cd-409c-be5b-d9553ec92e8f",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790890819091
+      },
+      {
+        "executionId": "07068191-eea2-469f-8478-5c4d13d8ee8d",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790891395054
+      }
+    ],
+    "9.2 Write smoke test for scheduler configuration": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789294751262
+      },
+      {
+        "executionId": "07068191-eea2-469f-8478-5c4d13d8ee8d",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790891399127
+      },
+      {
+        "executionId": "20ded684-76c4-40c5-bf4c-61db5c072b89",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790892198204
+      }
+    ],
+    "2. Database schema and migrations": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789297956460
+      }
+    ],
+    "4. Resort seed data": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298041649
+      }
+    ],
+    "5. Scoring schemas and gate logic": [
+      {
+        "executionId": "90234735-6969-40b8-b2ab-11b743ddaf24",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1789298356931
+      }
+    ],
+    "6. Score computation engine": [
+      {
+        "executionId": "c8101391-6033-4135-b446-be1b6e17c6a8",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790888302014
+      }
+    ],
+    "7. Open-Meteo async client": [
+      {
+        "executionId": "58734507-31cd-409c-be5b-d9553ec92e8f",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790890801776
+      }
+    ],
+    "9. APScheduler integration": [
+      {
+        "executionId": "20ded684-76c4-40c5-bf4c-61db5c072b89",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790892198251
+      }
+    ],
+    "8. Weekly run orchestrator": [
+      {
+        "executionId": "20ded684-76c4-40c5-bf4c-61db5c072b89",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1790892530865
+      }
+    ]
+  }
+}
