@@ -16,6 +16,19 @@ dependencies = [
     "httpx==0.28.1",
     "pydantic-settings==2.13.1",
     "APScheduler==3.11.3",
+    # ── Phase 2 ───────────────────────────────────────────────────────────────
+    "langgraph==0.4.8",
+    "langchain-openai==0.3.18",
+    "langchain-core==0.3.61",
+    "openai==1.82.1",
+    "praw==7.8.1",
+    "feedparser==6.0.11",
+    "playwright==1.52.0",
+    "pgvector==0.3.6",
+    "python-telegram-bot==21.11.1",
+    "sendgrid==6.11.0",
+    "amadeus==9.0.0",
+    "jinja2==3.1.6",
 ]
 
 [project.optional-dependencies]
@@ -25,6 +38,7 @@ dev = [
     "pytest-asyncio==1.4.0",
     "pytest-httpx==0.36.2",
     "aiosqlite==0.21.0",
+    "pytest-mock==3.14.0",
 ]
 
 [tool.setuptools.packages.find]

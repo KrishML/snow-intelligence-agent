@@ -32,5 +32,39 @@ class Settings(BaseSettings):
     weekly_run_minute: int = 0
     weekly_run_timezone: str = "UTC"
 
+    # ── OpenAI ────────────────────────────────────────────────────────────────
+    openai_api_key: str = ""
+    openai_model_chat: str = "gpt-4o"
+    openai_model_qualitative: str = "gpt-4o-mini"
+    openai_embedding_model: str = "text-embedding-3-small"
+    openai_vision_timeout_seconds: float = 30.0
+
+    # ── Reddit (praw) ─────────────────────────────────────────────────────────
+    reddit_client_id: str = ""
+    reddit_client_secret: str = ""
+    reddit_user_agent: str = "snow-agent/2.0"
+    reddit_post_limit: int = 10
+    reddit_lookback_days: int = 7
+
+    # ── Webcam ────────────────────────────────────────────────────────────────
+    webcam_timeout_seconds: float = 5.0
+    webcam_snapshot_dir: str = "snapshots"
+    webcam_concurrency: int = 5
+
+    # ── Qualitative scoring ───────────────────────────────────────────────────
+    qualitative_concurrency: int = 5
+    qualitative_timeout_minutes: float = 8.0
+
+    # ── Delivery ──────────────────────────────────────────────────────────────
+    telegram_bot_token: str = ""
+    telegram_chat_id: str = ""
+    sendgrid_api_key: str = ""
+    sendgrid_from_email: str = "reports@snow-agent.io"
+    delivery_email_address: str = ""
+
+    # ── Amadeus (chat agent only) ─────────────────────────────────────────────
+    amadeus_client_id: str = ""
+    amadeus_client_secret: str = ""
+
 
 settings = Settings()

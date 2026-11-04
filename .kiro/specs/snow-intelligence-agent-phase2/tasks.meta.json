@@ -1,0 +1,327 @@
+{
+  "pbtResults": {
+    "5.2 Write property test for qualitative score computation": {
+      "status": "passed",
+      "lastRunTimestamp": 1793812468433
+    }
+  },
+  "executionHistory": {
+    "1. Extend settings and add Phase 2 dependencies": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707340
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808714608
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808794305
+      }
+    ],
+    "2.1 Create Alembic migration `0002_phase2_schema.py`": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707436
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808797660
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809189439
+      }
+    ],
+    "2.2 Create SQLAlchemy ORM models for Phase 2 tables": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707479
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809101853
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809496515
+      }
+    ],
+    "3.1 Implement shared OpenAI async client (`app/clients/openai_client.py`)": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707500
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809506793
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809616467
+      }
+    ],
+    "4.1 Implement Reddit client (`app/clients/reddit.py`)": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707525
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809951158
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793811624490
+      }
+    ],
+    "4.2 Implement RSS client (`app/clients/rss.py`)": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707548
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809957001
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793811631746
+      }
+    ],
+    "5.1 Implement `_compute_score` pure function and `QualitativeSignalScorer`": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707595
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793811637035
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793811728539
+      }
+    ],
+    "5.3 Implement `qualitative_signals` DB write and `resort_knowledge_embeddings` embed/write": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707616
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793812055734
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793812508488
+      }
+    ],
+    "6. Checkpoint — qualitative signal scorer": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707637
+      }
+    ],
+    "7.1 Implement `WebcamClassifier` with Playwright capture and GPT-4o vision classification": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707665
+      }
+    ],
+    "7.2 Implement webcam bonus/penalty adjuster and `webcam_snapshots` DB write": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707688
+      }
+    ],
+    "8.1 Extend `WeeklyRunOrchestrator` with Phase 2 pipeline steps": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707715
+      }
+    ],
+    "9.1 Implement `MemorySystem.retrieve_context()`": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707738
+      }
+    ],
+    "9.3 Implement `MemorySystem._deduplicate_preference()` and `extract_and_write()`": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707766
+      }
+    ],
+    "10.1 Implement LangGraph `StateGraph` and tool registry (`app/chat/agent.py`)": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707787
+      }
+    ],
+    "10.2 Implement all 7 Chat_Agent tools (`app/chat/tools.py`)": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707805
+      }
+    ],
+    "10.3 Implement `ChatSession` lifecycle manager (`app/chat/session.py`)": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707824
+      }
+    ],
+    "11. Checkpoint — chat agent and memory": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707843
+      }
+    ],
+    "12.1 Implement Telegram delivery (`app/delivery/telegram_bot.py`)": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707865
+      }
+    ],
+    "12.2 Implement SendGrid email delivery (`app/delivery/email_sender.py`)": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707887
+      }
+    ],
+    "12.3 Wire delivery trigger into `WeeklyRunOrchestrator`": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707906
+      }
+    ],
+    "13.1 Add Chat_Agent and plan endpoints to FastAPI app": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707926
+      }
+    ],
+    "14. Final checkpoint — end-to-end integration": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793808707947
+      }
+    ],
+    "2. Phase 2 Alembic migration": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809496560
+      }
+    ],
+    "3. OpenAI async client": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809616507
+      }
+    ],
+    "2.3 Write smoke tests for Phase 2 schema": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809939729
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793810402300
+      }
+    ],
+    "3.2 Write integration tests for OpenAI client": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793809944659
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793811618840
+      }
+    ],
+    "4. Reddit and RSS clients": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793811631776
+      }
+    ],
+    "4.3 Write integration tests for Reddit and RSS clients": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793812045952
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793812498152
+      }
+    ],
+    "5.2 Write property test for qualitative score computation": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793812050789
+      },
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793812503104
+      }
+    ],
+    "5. Qualitative Signal Scorer": [
+      {
+        "executionId": "84da3f7e-2c47-4f1c-b161-3572470b42e6",
+        "chatSessionId": "sess_703efb25-594e-4aa9-8213-5d3689fadcd4",
+        "timestamp": 1793812508522
+      }
+    ]
+  }
+}
