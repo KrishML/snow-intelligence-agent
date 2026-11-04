@@ -261,9 +261,12 @@ class OpenMeteoClient:
         """Return the percentage of weekend days in the last 5 years where
         snow depth met the mode-appropriate threshold.
 
-        Calls ``GET /v1/archive`` with ``daily=snow_depth`` over the date
-        range ``[today - 5*365 days, yesterday]``, then filters to Saturday
-        (weekday 5) and Sunday (weekday 6) dates only.
+        Calls ``GET /v1/archive`` with ``hourly=snow_depth`` (snow_depth is
+        not available as a daily variable in the archive API) over the date
+        range ``[today - 5*365 days, yesterday]``.  For each day the noon
+        (T12:00) hourly reading is used as the representative depth.  Filters
+        to Saturday (weekday 5) and Sunday (weekday 6) before computing the
+        reliability percentage.
 
         Returns a float in [0.0, 100.0].  Returns 0.0 if no weekend dates
         were found in the archive response.
@@ -275,7 +278,7 @@ class OpenMeteoClient:
         params = {
             "latitude": lat,
             "longitude": lon,
-            "daily": "snow_depth",
+            "hourly": "snow_depth",
             "start_date": start_date.isoformat(),
             "end_date": end_date.isoformat(),
         }
@@ -285,9 +288,17 @@ class OpenMeteoClient:
                 settings.open_meteo_archive_url, params, resort_id
             )
 
-        daily = data.get("daily", {})
-        times: list[str] = daily.get("time", [])
-        snow_depths: list = daily.get("snow_depth", [])
+        hourly = data.get("hourly", {})
+        times: list[str] = hourly.get("time", [])
+        snow_depths: list = hourly.get("snow_depth", [])
+
+        # Build a dict of date -> noon snow_depth (T12:00 reading per day).
+        # The archive returns hourly timestamps like "2025-01-11T12:00".
+        noon_depth: dict[date, float | None] = {}
+        for i, t in enumerate(times):
+            if t.endswith("T12:00"):
+                day = date.fromisoformat(t[:10])
+                noon_depth[day] = snow_depths[i] if i < len(snow_depths) else None
 
         # Determine threshold in metres.
         if mode == "sports":
@@ -298,13 +309,11 @@ class OpenMeteoClient:
         total_weekend_days = 0
         matching_days = 0
 
-        for i, t in enumerate(times):
-            day = date.fromisoformat(t)
+        for day, depth in noon_depth.items():
             if day.weekday() not in (5, 6):  # 5=Saturday, 6=Sunday
                 continue
 
             total_weekend_days += 1
-            depth = snow_depths[i] if i < len(snow_depths) else None
             if depth is not None and depth >= threshold_m:
                 matching_days += 1
 

@@ -226,30 +226,31 @@ async def test_get_historical_reliability_sports_mode(
     httpx_mock.add_response(
         url=ARCHIVE_URL_RE,
         json={
-            "daily": {
+            "hourly": {
                 "time": [
-                    "2025-01-10",  # Fri
-                    "2025-01-11",  # Sat ✓
-                    "2025-01-12",  # Sun ✓
-                    "2025-01-13",  # Mon
-                    "2025-01-17",  # Fri
-                    "2025-01-18",  # Sat ✓
-                    "2025-01-19",  # Sun ✗
-                    "2025-01-20",  # Mon
-                    "2025-01-24",  # Fri
-                    "2025-01-25",  # Sat ✓
+                    # Client uses T12:00 readings as the daily noon snow depth.
+                    "2025-01-10T12:00",  # Fri noon
+                    "2025-01-11T12:00",  # Sat noon -> 0.45
+                    "2025-01-12T12:00",  # Sun noon -> 0.42
+                    "2025-01-13T12:00",  # Mon noon
+                    "2025-01-17T12:00",  # Fri noon
+                    "2025-01-18T12:00",  # Sat noon -> 0.50
+                    "2025-01-19T12:00",  # Sun noon -> 0.38 (below sports 0.40m)
+                    "2025-01-20T12:00",  # Mon noon
+                    "2025-01-24T12:00",  # Fri noon
+                    "2025-01-25T12:00",  # Sat noon -> 0.55
                 ],
                 "snow_depth": [
-                    0.20,
-                    0.45,
-                    0.42,
-                    0.10,
-                    0.05,
-                    0.50,
-                    0.38,
-                    0.10,
-                    0.15,
-                    0.55,
+                    0.20,  # Fri
+                    0.45,  # Sat (sports pass, tourism pass)
+                    0.42,  # Sun (sports pass, tourism pass)
+                    0.10,  # Mon
+                    0.05,  # Fri
+                    0.50,  # Sat (sports pass, tourism pass)
+                    0.38,  # Sun (sports FAIL <0.40, tourism pass >=0.15)
+                    0.10,  # Mon
+                    0.15,  # Fri
+                    0.55,  # Sat (sports pass, tourism pass)
                 ],
             }
         },
@@ -281,30 +282,31 @@ async def test_get_historical_reliability_tourism_mode(
     httpx_mock.add_response(
         url=ARCHIVE_URL_RE,
         json={
-            "daily": {
+            "hourly": {
                 "time": [
-                    "2025-01-10",  # Fri
-                    "2025-01-11",  # Sat ✓
-                    "2025-01-12",  # Sun ✓
-                    "2025-01-13",  # Mon
-                    "2025-01-17",  # Fri
-                    "2025-01-18",  # Sat ✓
-                    "2025-01-19",  # Sun ✓
-                    "2025-01-20",  # Mon
-                    "2025-01-24",  # Fri
-                    "2025-01-25",  # Sat ✓
+                    # Client uses T12:00 readings as the daily noon snow depth.
+                    "2025-01-10T12:00",  # Fri noon
+                    "2025-01-11T12:00",  # Sat noon -> 0.45
+                    "2025-01-12T12:00",  # Sun noon -> 0.42
+                    "2025-01-13T12:00",  # Mon noon
+                    "2025-01-17T12:00",  # Fri noon
+                    "2025-01-18T12:00",  # Sat noon -> 0.50
+                    "2025-01-19T12:00",  # Sun noon -> 0.38 (below sports 0.40m)
+                    "2025-01-20T12:00",  # Mon noon
+                    "2025-01-24T12:00",  # Fri noon
+                    "2025-01-25T12:00",  # Sat noon -> 0.55
                 ],
                 "snow_depth": [
-                    0.20,
-                    0.45,
-                    0.42,
-                    0.10,
-                    0.05,
-                    0.50,
-                    0.38,
-                    0.10,
-                    0.15,
-                    0.55,
+                    0.20,  # Fri
+                    0.45,  # Sat (sports pass, tourism pass)
+                    0.42,  # Sun (sports pass, tourism pass)
+                    0.10,  # Mon
+                    0.05,  # Fri
+                    0.50,  # Sat (sports pass, tourism pass)
+                    0.38,  # Sun (sports FAIL <0.40, tourism pass >=0.15)
+                    0.10,  # Mon
+                    0.15,  # Fri
+                    0.55,  # Sat (sports pass, tourism pass)
                 ],
             }
         },

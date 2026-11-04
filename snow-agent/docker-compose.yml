@@ -4,6 +4,8 @@ services:
     ports:
       - "8000:8000"
     env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://snow:snow@db:5432/snow_agent
     depends_on:
       db:
         condition: service_healthy

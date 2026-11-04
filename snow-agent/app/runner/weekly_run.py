@@ -199,7 +199,7 @@ class WeeklyRunOrchestrator:
                 resort_id=resort_id,
                 passed_gate=gate_result.passed,
                 gate_failure_reason=gate_result.reason,
-                depth_cm=int(conditions.snow_depth_cm) if conditions.snow_depth_cm else None,
+                depth_cm=int(conditions.snow_depth_cm) if conditions.snow_depth_cm is not None else None,
                 temperature_c=conditions.temperature_c,
                 forecast_stable=forecast_stable,
                 forecast_detail={
