@@ -91,7 +91,7 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - Call `openai_client.embed(result.summary)` → write `ResortKnowledgeEmbedding` record with `resort_id`, `season=current_season()`, and the embedding vector
     - _Requirements: 10.5, 10.6_
 
-  - [ ]* 5.4 Write property test for qualitative DB write completeness
+  - [-]* 5.4 Write property test for qualitative DB write completeness
     - **Property 2: Qualitative DB Write Completeness** — generate resort lists of size N (1–30) with all external calls mocked; after `QualitativeSignalScorer` processes all N resorts, assert exactly N `qualitative_signals` records exist for that `weekly_run_id`
     - **Validates: Requirements 10.5**
 
@@ -99,7 +99,7 @@ The tasks follow the extended weekly run flow: database schema first, then new s
   - Ensure all qualitative scorer tests pass, ask the user if questions arise.
 
 - [ ] 7. Webcam Classifier
-  - [~] 7.1 Implement `WebcamClassifier` with Playwright capture and GPT-4o vision classification
+  - [ ] 7.1 Implement `WebcamClassifier` with Playwright capture and GPT-4o vision classification
     - Implement `WebcamClassifier.classify(resort) -> WebcamResult` using `playwright.async_api.async_playwright()`
     - On NULL `webcam_url`: immediately return `WebcamResult(classification='camera_offline', description='No webcam URL configured', file_path=None)`
     - Launch headless Chromium; `page.goto(url, timeout=5000)`; on timeout or nav error: return `camera_offline`
