@@ -10,6 +10,7 @@ from sqlalchemy import (
     JSON,
     Boolean,
     CheckConstraint,
+    DateTime,
     ForeignKey,
     Index,
     Numeric,
@@ -52,11 +53,11 @@ class ConsentLog(BookingBase):
     plan_id: Mapped[uuid.UUID] = mapped_column(nullable=False)
     user_id: Mapped[uuid.UUID] = mapped_column(nullable=False)
     channel: Mapped[str] = mapped_column(String(20), nullable=False)
-    consented_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    consented_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     flight_total_gbp: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False)
     hotel_total_gbp: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False)
     total_gbp: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False)
-    price_lock_expires_at: Mapped[datetime] = mapped_column(nullable=False)
+    price_lock_expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     plan_snapshot: Mapped[dict] = mapped_column(_JSON, nullable=False)
 
 
@@ -88,8 +89,8 @@ class Booking(BookingBase):
     payment_ref: Mapped[str | None] = mapped_column(String(100))
     error: Mapped[str | None] = mapped_column(Text)
     needs_manual_review: Mapped[bool] = mapped_column(Boolean, default=False)
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
-    updated_at: Mapped[datetime | None] = mapped_column(onupdate=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), onupdate=func.now())
 
 
 class BookingEvent(BookingBase):
@@ -101,4 +102,4 @@ class BookingEvent(BookingBase):
     booking_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("bookings.id"), nullable=False, index=True)
     status: Mapped[str] = mapped_column(String(30), nullable=False)
     detail: Mapped[str | None] = mapped_column(Text)
-    at: Mapped[datetime] = mapped_column(server_default=func.now())
+    at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

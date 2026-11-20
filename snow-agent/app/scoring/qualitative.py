@@ -21,7 +21,7 @@ from app.db.models.embeddings import ResortKnowledgeEmbedding
 from app.db.models.qualitative_signal import QualitativeSignal
 from app.db.models.resort import Resort
 from app.settings import settings
-from app.utils import current_season
+from app.utils import current_season, describe_error
 
 logger = logging.getLogger(__name__)
 
@@ -118,7 +118,7 @@ class QualitativeSignalScorer:
                 raw_texts.extend(reddit_posts)
                 sources_used.append("reddit")
         except Exception as exc:
-            source_errors["reddit"] = str(exc)
+            source_errors["reddit"] = describe_error(exc)
             logger.warning("Reddit fetch error for %s: %s", resort.name, exc)
         else:
             reddit_error = getattr(self._reddit, "last_error", None)
@@ -132,7 +132,7 @@ class QualitativeSignalScorer:
                 raw_texts.extend(rss_entries)
                 sources_used.append("rss")
         except Exception as exc:
-            source_errors["rss"] = str(exc)
+            source_errors["rss"] = describe_error(exc)
             logger.warning("RSS fetch error for %s: %s", resort.name, exc)
         else:
             rss_error = getattr(self._rss, "last_error", None)
@@ -149,7 +149,7 @@ class QualitativeSignalScorer:
                     raw_texts.extend(travel)
                     sources_used.append("travel_blog")
             except Exception as exc:
-                source_errors["travel_blog"] = str(exc)
+                source_errors["travel_blog"] = describe_error(exc)
             else:
                 if self._rss.last_error:
                     source_errors["travel_blog"] = self._rss.last_error
@@ -161,7 +161,7 @@ class QualitativeSignalScorer:
                 raw_texts.append(f"Official resort report: {report}")
                 sources_used.append("official")
         except Exception as exc:
-            source_errors["official"] = str(exc)
+            source_errors["official"] = describe_error(exc)
         else:
             if self._official.last_error:
                 source_errors["official"] = self._official.last_error
@@ -205,7 +205,7 @@ class QualitativeSignalScorer:
                 kw for kw in raw_kw if isinstance(kw, str) and kw.lower() in _NEGATIVE_KEYWORDS
             ]
         except OpenAIClientError as exc:
-            source_errors["openai_summary"] = str(exc)
+            source_errors["openai_summary"] = describe_error(exc)
             logger.warning("GPT-4o-mini failed for %s: %s — using neutral fallback", resort.name, exc)
             return QualitativeResult(
                 resort_id=resort.id,
@@ -273,13 +273,13 @@ class QualitativeSignalScorer:
                 )
                 session.add(embedding)
             except OpenAIClientError as exc:
-                result.source_errors["openai_embedding"] = str(exc)
+                result.source_errors["openai_embedding"] = describe_error(exc)
                 logger.warning(
                     "Failed to embed qualitative summary for resort %s: %s — skipping embedding",
                     result.resort_id,
                     exc,
                 )
-                result.source_errors["openai_embedding"] = str(exc)
+                result.source_errors["openai_embedding"] = describe_error(exc)
 
     async def embed_summaries(self, summaries: list[str]) -> list[list[float]]:
         """Batch embed all resort summaries from one weekly run."""

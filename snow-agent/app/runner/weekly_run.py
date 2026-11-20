@@ -39,6 +39,7 @@ from app.scoring.qualitative import QualitativeResult, QualitativeSignalScorer
 from app.scoring.engine import apply_gate, compute_score
 from app.scoring.schemas import DayForecast, GateInput, ScoreInput
 from app.settings import settings
+from app.utils import describe_error
 from app.webcam.classifier import WebcamClassifier, WebcamResult, apply_webcam_adjustment
 
 logger = logging.getLogger(__name__)
@@ -89,7 +90,7 @@ class WeeklyRunOrchestrator:
                     run.status = "failed"
                     run.completed_at = datetime.now(timezone.utc).replace(tzinfo=None)
                     error_log = dict(run.error_log) if isinstance(run.error_log, dict) else {}
-                    error_log["fatal_error"] = str(exc)
+                    error_log["fatal_error"] = describe_error(exc)
                     run.error_log = error_log
                     await session.commit()
             await self._dispatch_delivery(run_id, success=False)
@@ -127,7 +128,7 @@ class WeeklyRunOrchestrator:
                         if isinstance(run.error_log, dict)
                         else {}
                     )
-                    error_log["delivery"] = {"dispatch": str(exc)}
+                    error_log["delivery"] = {"dispatch": describe_error(exc)}
                     run.error_log = error_log
                     await session.commit()
 
@@ -193,13 +194,13 @@ class WeeklyRunOrchestrator:
             # asyncio.gather with return_exceptions=True surfaces BaseExceptions
             # that escape the inner try/except (highly unlikely here, but safe).
             if isinstance(item, BaseException):
-                message = str(item)
+                message = describe_error(item)
                 error_log[f"open_meteo:unexpected:{len(error_log)}"] = message
                 logger.error("Unexpected Open-Meteo gather exception: %s", item)
                 continue
             resort_id, payload = item
             if isinstance(payload, OpenMeteoFetchError):
-                error_log[str(resort_id)] = str(payload)
+                error_log[str(resort_id)] = describe_error(payload)
                 logger.warning("Fetch error for resort %s: %s", resort_id, payload)
             else:
                 fetch_results[resort_id] = payload
@@ -331,15 +332,15 @@ class WeeklyRunOrchestrator:
                     try:
                         qualitative, webcam, component_errors = task.result()
                     except Exception as exc:
-                        error_log[f"phase2:{score.resort_id}"] = str(exc)
+                        error_log[f"phase2:{score.resort_id}"] = describe_error(exc)
                         logger.exception(
                             "Phase 2 signal processing failed for resort %s",
                             score.resort_id,
                         )
                         qualitative, webcam = self._neutral_signal_results(
-                            score.resort_id, str(exc)
+                            score.resort_id, describe_error(exc)
                         )
-                        component_errors = {"phase2": str(exc)}
+                        component_errors = {"phase2": describe_error(exc)}
                     for component, message in component_errors.items():
                         error_log[f"{component}:{score.resort_id}"] = message
                     if webcam is not None and webcam.error:
@@ -489,14 +490,14 @@ class WeeklyRunOrchestrator:
         )
         errors: dict[str, str] = {}
         if isinstance(qualitative, BaseException):
-            errors["qualitative"] = str(qualitative)
+            errors["qualitative"] = describe_error(qualitative)
             neutral, _ = self._neutral_signal_results(
-                resort.id, str(qualitative)
+                resort.id, describe_error(qualitative)
             )
             qualitative = neutral
         if isinstance(webcam, BaseException):
-            errors["webcam"] = str(webcam)
-            _, offline = self._neutral_signal_results(resort.id, str(webcam))
+            errors["webcam"] = describe_error(webcam)
+            _, offline = self._neutral_signal_results(resort.id, describe_error(webcam))
             webcam = offline
         errors.update(qualitative.source_errors)
         if webcam is not None and webcam.error:

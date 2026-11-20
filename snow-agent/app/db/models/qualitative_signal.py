@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import CheckConstraint, ForeignKey, Integer, String, Text, Index
+from sqlalchemy import CheckConstraint, DateTime, ForeignKey, Index, Integer, String, Text
 from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
@@ -29,4 +29,4 @@ class QualitativeSignal(Base):
     sentiment: Mapped[str | None] = mapped_column(String(20))
     negative_keywords: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
     score: Mapped[int | None] = mapped_column(Integer)
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

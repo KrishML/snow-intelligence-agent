@@ -197,13 +197,21 @@ class BookingEngine:
                 status="consented",
                 needs_manual_review=False,
             )
-            session.add_all([consent, booking])
             try:
+                # Consent first: the booking row references it, and SQLAlchemy does not order
+                # inserts across mappers that have no relationship().
+                session.add(consent)
+                await session.flush()
+                session.add(booking)
                 await session.flush()
                 session.add(BookingEvent(id=uuid.uuid4(), booking_id=booking.id, status="consented"))
                 await session.commit()
             except IntegrityError as exc:
                 await session.rollback()
+                # PostgreSQL names the index; SQLite (tests) names the column.
+                message = str(exc)
+                if "uq_bookings_open_plan" not in message and "bookings.plan_id" not in message:
+                    raise
                 raise BookingRefused(409, "A booking already exists for this plan.") from exc
             return booking
 

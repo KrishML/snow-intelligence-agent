@@ -14,6 +14,7 @@ import praw
 import praw.exceptions
 
 from app.settings import settings
+from app.utils import describe_error
 
 logger = logging.getLogger(__name__)
 
@@ -83,10 +84,10 @@ class RedditClient:
         try:
             return await asyncio.to_thread(_sync_fetch)
         except praw.exceptions.PRAWException as exc:
-            self.last_error = str(exc)
+            self.last_error = describe_error(exc)
             logger.warning("Reddit fetch failed for '%s': %s", resort_name, exc)
             return []
         except Exception as exc:  # rate limits, network errors, etc.
-            self.last_error = str(exc)
+            self.last_error = describe_error(exc)
             logger.warning("Reddit fetch error for '%s': %s", resort_name, exc)
             return []

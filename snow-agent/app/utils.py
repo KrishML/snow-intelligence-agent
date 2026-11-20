@@ -12,3 +12,9 @@ def current_season() -> str:
     if today.month >= 10:
         return f"{today.year}/{str(today.year + 1)[2:]}"
     return f"{today.year - 1}/{str(today.year)[2:]}"
+
+
+def describe_error(exc: BaseException) -> str:
+    """Error text that is never empty: ``str(httpx.ReadTimeout())`` is ``""``."""
+    message = str(exc).strip()
+    return f"{type(exc).__name__}: {message}" if message else type(exc).__name__

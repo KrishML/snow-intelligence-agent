@@ -12,6 +12,7 @@ import httpx
 from bs4 import BeautifulSoup
 
 from app.settings import settings
+from app.utils import describe_error
 
 logger = logging.getLogger(__name__)
 
@@ -61,7 +62,7 @@ class OfficialReportClient:
                 response = await client.get(url)
                 response.raise_for_status()
         except Exception as exc:
-            self.last_error = str(exc)
+            self.last_error = describe_error(exc)
             logger.warning("Official report fetch failed for '%s': %s", resort_name, exc)
             return None
         text = extract_report_text(response.text)

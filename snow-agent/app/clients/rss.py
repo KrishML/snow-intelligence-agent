@@ -9,6 +9,7 @@ import feedparser
 import httpx
 
 from app.settings import settings
+from app.utils import describe_error
 
 logger = logging.getLogger(__name__)
 
@@ -68,7 +69,7 @@ class RSSClient:
                 response.raise_for_status()
             return await asyncio.to_thread(_sync_parse, response.text)
         except Exception as exc:
-            self.last_error = str(exc)
+            self.last_error = describe_error(exc)
             logger.warning("RSS fetch failed for '%s': %s", resort_name, exc)
             return []
 
@@ -85,7 +86,7 @@ class RSSClient:
                     response.raise_for_status()
                     feed = await asyncio.to_thread(feedparser.parse, response.text)
                 except Exception as exc:
-                    errors.append(f"{url}: {exc}")
+                    errors.append(f"{url}: {describe_error(exc)}")
                     continue
                 for entry in feed.entries:
                     title = getattr(entry, "title", "") or ""

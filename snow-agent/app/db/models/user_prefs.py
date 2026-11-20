@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import JSON, CheckConstraint, Numeric, String
+from sqlalchemy import CheckConstraint, DateTime, JSON, Numeric, String
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func
@@ -32,5 +32,5 @@ class UserPrefs(Base):
     budget_total_gbp: Mapped[Decimal | None] = mapped_column(Numeric(10, 2))
     email: Mapped[str | None] = mapped_column(String(254))
     telegram_chat_id: Mapped[str | None] = mapped_column(String(40))
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
-    updated_at: Mapped[datetime | None] = mapped_column(onupdate=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), onupdate=func.now())
