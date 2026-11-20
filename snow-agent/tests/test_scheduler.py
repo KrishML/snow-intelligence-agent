@@ -36,8 +36,8 @@ def test_scheduler_has_exactly_one_job() -> None:
     scheduler = create_scheduler()
     jobs = scheduler.get_jobs()
 
-    assert len(jobs) == 1
-    assert jobs[0].id == "weekly_snow_run"
+    assert {job.id for job in jobs} == {"weekly_snow_run", "snapshot_retention"}
+    assert len(jobs) == 2
 
 
 def test_scheduler_job_trigger_is_cron_friday() -> None:
@@ -47,7 +47,7 @@ def test_scheduler_job_trigger_is_cron_friday() -> None:
     Requirements: 7.1, 29.4
     """
     scheduler = create_scheduler()
-    job = scheduler.get_jobs()[0]
+    job = scheduler.get_job("weekly_snow_run")
 
     assert isinstance(job.trigger, CronTrigger)
 
@@ -64,7 +64,7 @@ def test_scheduler_misfire_grace_time() -> None:
     Requirements: 7.1, 29.4
     """
     scheduler = create_scheduler()
-    job = scheduler.get_jobs()[0]
+    job = scheduler.get_job("weekly_snow_run")
 
     assert job.misfire_grace_time == 3600
 
@@ -76,7 +76,7 @@ def test_scheduler_job_name() -> None:
     Requirements: 7.1, 29.4
     """
     scheduler = create_scheduler()
-    job = scheduler.get_jobs()[0]
+    job = scheduler.get_job("weekly_snow_run")
 
     assert job.name == "Weekly Snow Intelligence Run"
 

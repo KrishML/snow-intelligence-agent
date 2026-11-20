@@ -50,7 +50,9 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from app.clients.open_meteo import ForecastData
 from app.clients.open_meteo import DayForecast as ClientDayForecast
 from app.clients.open_meteo import ResortConditions
+from app.scoring.qualitative import QualitativeResult, QualitativeSignalScorer
 from app.runner.weekly_run import WeeklyRunOrchestrator
+from app.webcam.classifier import WebcamClassifier, WebcamResult
 
 # Import the SQLite mirror schema from conftest
 from tests.conftest import _resorts, _test_meta, _weekly_runs
@@ -67,6 +69,49 @@ _GOOD_TEMP_C = -5.0
 _GOOD_RAIN_MM = 0.0
 _GOOD_SNOWFALL_CM = 5.0
 _GOOD_RELIABILITY = 80.0
+
+
+@pytest.fixture(autouse=True)
+def mock_phase2_signal_sources(monkeypatch):
+    """Keep orchestrator tests offline and verify score contribution deterministically."""
+    async def score(self, resort, mode):
+        return QualitativeResult(
+            resort_id=resort.id,
+            score=14,
+            sentiment="positive",
+            summary="Recent reports describe good snow.",
+            sources_used=["reddit"],
+        )
+
+    async def classify(self, resort, weekly_run_id):
+        return WebcamResult(
+            resort_id=resort.id,
+            classification="snow_good",
+            description="Snow-covered slopes.",
+            file_path="snapshots/test.png",
+            captured_at=datetime.now(),
+        )
+
+    async def write_results(
+        self, session, weekly_run_id, result, embedding_vector=None
+    ):
+        return None
+
+    async def write_result(session, weekly_run_id, result):
+        return None
+
+    async def enter(self):
+        return self
+
+    async def exit(self, exc_type, exc_val, exc_tb):
+        return None
+
+    monkeypatch.setattr(QualitativeSignalScorer, "score", score)
+    monkeypatch.setattr(QualitativeSignalScorer, "write_results", write_results)
+    monkeypatch.setattr(WebcamClassifier, "classify", classify)
+    monkeypatch.setattr(WebcamClassifier, "write_result", staticmethod(write_result))
+    monkeypatch.setattr(WebcamClassifier, "__aenter__", enter)
+    monkeypatch.setattr(WebcamClassifier, "__aexit__", exit)
 
 
 # ---------------------------------------------------------------------------
@@ -287,6 +332,18 @@ async def test_weekly_run_writes_to_db(test_engine, patched_session_factory) -> 
     assert run_row is not None, "weekly_runs row not found"
     assert run_row[0] == "complete", f"Expected status='complete', got {run_row[0]!r}"
     assert run_row[1] == 3, f"Expected resorts_checked=3, got {run_row[1]}"
+
+    async with test_engine.connect() as conn:
+        score_result = await conn.execute(
+            text(
+                "SELECT score_qualitative, score_total "
+                "FROM snow_scores WHERE weekly_run_id = :run_id"
+            ),
+            {"run_id": run_id.hex},
+        )
+        scores = score_result.fetchall()
+    assert all(row[0] == 17 for row in scores)
+    assert all(row[1] == 30 + 30 + 20 + 17 for row in scores)
 
 
 # ---------------------------------------------------------------------------

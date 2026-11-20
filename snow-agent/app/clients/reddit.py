@@ -31,6 +31,9 @@ class RedditClient:
     via ``asyncio.to_thread`` to avoid blocking the event loop.
     """
 
+    def __init__(self) -> None:
+        self.last_error: str | None = None
+
     def _make_reddit(self) -> praw.Reddit:
         return praw.Reddit(
             client_id=settings.reddit_client_id,
@@ -49,6 +52,12 @@ class RedditClient:
         (title + " " + body, truncated to 500 chars each).
         Returns empty list on any error — callers handle fallback.
         """
+        self.last_error = None
+        if not settings.reddit_client_id or not settings.reddit_client_secret:
+            self.last_error = "Reddit credentials are not configured"
+            logger.warning("%s", self.last_error)
+            return []
+
         subreddits = _SUBREDDITS.get(mode, ["skiing"])
         subreddit_str = "+".join(subreddits)
         cutoff = datetime.now(tz=timezone.utc) - timedelta(days=settings.reddit_lookback_days)
@@ -74,8 +83,10 @@ class RedditClient:
         try:
             return await asyncio.to_thread(_sync_fetch)
         except praw.exceptions.PRAWException as exc:
+            self.last_error = str(exc)
             logger.warning("Reddit fetch failed for '%s': %s", resort_name, exc)
             return []
         except Exception as exc:  # rate limits, network errors, etc.
+            self.last_error = str(exc)
             logger.warning("Reddit fetch error for '%s': %s", resort_name, exc)
             return []

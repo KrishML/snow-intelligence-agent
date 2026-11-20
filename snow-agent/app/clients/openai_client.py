@@ -134,6 +134,35 @@ class OpenAIClient:
             logger.error("OpenAI embed failed: %s", exc)
             raise OpenAIClientError(str(exc)) from exc
 
+    async def embed_many(self, texts: list[str]) -> list[list[float]]:
+        """Embed multiple texts in one request, preserving input order."""
+        if not texts:
+            return []
+        client = self._get_client()
+        try:
+            response = await client.embeddings.create(
+                model=settings.openai_embedding_model,
+                input=texts,
+                encoding_format="float",
+                timeout=settings.openai_vision_timeout_seconds,
+            )
+            vectors = [
+                datum.embedding
+                for datum in sorted(response.data, key=lambda item: item.index)
+            ]
+            if len(vectors) != len(texts):
+                raise OpenAIClientError(
+                    f"Unexpected embedding count: {len(vectors)} (expected {len(texts)})"
+                )
+            if any(len(vector) != _EMBEDDING_DIM for vector in vectors):
+                raise OpenAIClientError(
+                    f"Embedding response must contain vectors of dimension {_EMBEDDING_DIM}"
+                )
+            return vectors
+        except openai.OpenAIError as exc:
+            logger.error("OpenAI batch embedding failed: %s", exc)
+            raise OpenAIClientError(str(exc)) from exc
+
 
 class OpenAIClientError(Exception):
     """Raised when an OpenAI API call fails unrecoverably."""

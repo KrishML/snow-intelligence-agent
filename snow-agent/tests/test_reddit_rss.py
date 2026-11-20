@@ -23,7 +23,7 @@ from __future__ import annotations
 import asyncio
 from datetime import datetime, timedelta, timezone
 from types import SimpleNamespace
-from unittest.mock import MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import praw.exceptions
 import pytest
@@ -31,6 +31,17 @@ import pytest
 from app.clients.reddit import RedditClient
 from app.clients.rss import RSSClient, _resort_name_to_slug
 from app.settings import settings
+
+
+@pytest.fixture(autouse=True)
+def _reddit_credentials():
+    original_id = settings.reddit_client_id
+    original_secret = settings.reddit_client_secret
+    settings.reddit_client_id = "test-client"
+    settings.reddit_client_secret = "test-secret"
+    yield
+    settings.reddit_client_id = original_id
+    settings.reddit_client_secret = original_secret
 
 
 # ---------------------------------------------------------------------------
@@ -191,10 +202,23 @@ def _make_feed(n_entries: int) -> SimpleNamespace:
     return SimpleNamespace(entries=entries, bozo=False)
 
 
+def _mock_rss_http(mocker, content: str = "<rss/>", *, error: Exception | None = None):
+    """Mock the bounded HTTP fetch used before feedparser parses an RSS document."""
+    response = MagicMock()
+    response.text = content
+    response.raise_for_status.return_value = None
+    client = MagicMock()
+    client.get = AsyncMock(side_effect=error, return_value=response)
+    client.__aenter__ = AsyncMock(return_value=client)
+    client.__aexit__ = AsyncMock(return_value=False)
+    mocker.patch("httpx.AsyncClient", return_value=client)
+
+
 def test_rss_returns_at_most_5_entries(mocker):
     """RSSClient must return at most 5 entries even when the feed has more."""
     feed = _make_feed(7)
 
+    _mock_rss_http(mocker)
     mocker.patch("feedparser.parse", return_value=feed)
 
     client = RSSClient()
@@ -208,6 +232,7 @@ def test_rss_formats_entry_as_title_summary(mocker):
     entry = SimpleNamespace(title="Great powder", summary="30cm fell overnight")
     feed = SimpleNamespace(entries=[entry], bozo=False)
 
+    _mock_rss_http(mocker)
     mocker.patch("feedparser.parse", return_value=feed)
 
     client = RSSClient()
@@ -219,12 +244,23 @@ def test_rss_formats_entry_as_title_summary(mocker):
 
 def test_rss_returns_empty_list_on_feedparser_error(mocker):
     """feedparser exceptions must be swallowed; an empty list is returned."""
-    mocker.patch("feedparser.parse", side_effect=Exception("timeout"))
+    _mock_rss_http(mocker, error=Exception("timeout"))
 
     client = RSSClient()
     result = asyncio.run(client.fetch_entries("Zermatt"))
 
     assert result == []
+
+
+async def test_reddit_missing_credentials_skips_external_call(mocker):
+    settings.reddit_client_id = ""
+    settings.reddit_client_secret = ""
+    reddit = mocker.patch("praw.Reddit")
+
+    client = RedditClient()
+    assert await client.fetch_posts("Zermatt", "sports") == []
+    assert client.last_error == "Reddit credentials are not configured"
+    reddit.assert_not_called()
 
 
 # ---------------------------------------------------------------------------

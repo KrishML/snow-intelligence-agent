@@ -19,6 +19,7 @@ class TripPlan(Base):
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    user_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     session_id: Mapped[str] = mapped_column(String(100), nullable=False)
     resort_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("resorts.id"), nullable=False)
     outbound_date: Mapped[date] = mapped_column(Date, nullable=False)
@@ -27,6 +28,7 @@ class TripPlan(Base):
     hotel_option: Mapped[dict | None] = mapped_column(JSONB)
     total_estimated_gbp: Mapped[Decimal | None] = mapped_column(Numeric(10, 2))
     session_notes: Mapped[str | None] = mapped_column(Text)
+    delivery_errors: Mapped[dict | None] = mapped_column(JSONB)
     status: Mapped[str] = mapped_column(String(20), nullable=False, default="draft")
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime | None] = mapped_column(onupdate=func.now())

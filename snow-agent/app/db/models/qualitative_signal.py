@@ -10,9 +10,14 @@ from app.db.models.base import Base
 class QualitativeSignal(Base):
     __tablename__ = "qualitative_signals"
     __table_args__ = (
-        CheckConstraint("source_type IN ('reddit','rss')", name="ck_qualitative_source_type"),
+        CheckConstraint("source_type IN ('reddit','rss','official')", name="ck_qualitative_source_type"),
         CheckConstraint("sentiment IN ('positive','neutral','negative')", name="ck_qualitative_sentiment"),
         Index("idx_qualitative_signals_run_resort", "weekly_run_id", "resort_id"),
+        Index(
+            "idx_qualitative_signals_keywords",
+            "negative_keywords",
+            postgresql_using="gin",
+        ),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
