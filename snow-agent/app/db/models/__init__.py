@@ -5,6 +5,7 @@ from app.db.models.weekly_run import WeeklyRun
 from app.db.models.qualitative_signal import QualitativeSignal
 from app.db.models.webcam_snapshot import WebcamSnapshot
 from app.db.models.trip_plan import TripPlan
+from app.db.models.user_prefs import UserPrefs
 from app.db.models.embeddings import (
     PreferenceEmbedding,
     TripFeedbackEmbedding,
@@ -14,7 +15,7 @@ from app.db.models.embeddings import (
 
 __all__ = [
     "Base", "Resort", "WeeklyRun", "SnowScore",
-    "QualitativeSignal", "WebcamSnapshot", "TripPlan",
+    "QualitativeSignal", "WebcamSnapshot", "TripPlan", "UserPrefs",
     "PreferenceEmbedding", "TripFeedbackEmbedding",
     "ResortKnowledgeEmbedding", "SessionSummaryEmbedding",
 ]

@@ -120,6 +120,8 @@ class TestRequiredColumns:
             "classification", "description", "file_path", "created_at",
         ):
             assert required in cols, f"WebcamSnapshot missing column '{required}'"
+        assert WebcamSnapshot.__table__.c.captured_at.type.timezone
+        assert WebcamSnapshot.__table__.c.created_at.type.timezone
 
     def test_trip_plan_columns(self):
         cols = _column_names(TripPlan)
@@ -157,17 +159,19 @@ class TestRequiredColumns:
 
 
 class TestVectorType:
-    def test_preference_embedding_has_vector_column(self):
-        col = PreferenceEmbedding.__table__.columns["embedding"]
-        assert isinstance(col.type, Vector), (
-            f"PreferenceEmbedding.embedding must be Vector, got {type(col.type)}"
-        )
-
-    def test_preference_embedding_vector_dimension(self):
-        col = PreferenceEmbedding.__table__.columns["embedding"]
-        assert col.type.dim == 1536, (
-            f"PreferenceEmbedding.embedding must be Vector(1536), got dim={col.type.dim}"
-        )
+    @pytest.mark.parametrize(
+        "model",
+        [
+            PreferenceEmbedding,
+            TripFeedbackEmbedding,
+            ResortKnowledgeEmbedding,
+            SessionSummaryEmbedding,
+        ],
+    )
+    def test_all_embedding_models_use_1536_dimensions(self, model):
+        col = model.__table__.columns["embedding"]
+        assert isinstance(col.type, Vector)
+        assert col.type.dim == 1536
 
 
 # ---------------------------------------------------------------------------
@@ -189,3 +193,22 @@ class TestResortKnowledgeEmbedding:
         col = ResortKnowledgeEmbedding.__table__.columns["embedding"]
         assert isinstance(col.type, Vector)
         assert col.type.dim == 1536
+
+
+class TestPhaseTwoIndexes:
+    def test_qualitative_signal_keyword_index_uses_gin(self):
+        index = next(
+            idx
+            for idx in QualitativeSignal.__table__.indexes
+            if idx.name == "idx_qualitative_signals_keywords"
+        )
+        assert index.dialect_options["postgresql"]["using"] == "gin"
+
+    def test_webcam_resort_time_index_is_declared(self):
+        index = next(
+            idx
+            for idx in WebcamSnapshot.__table__.indexes
+            if idx.name == "idx_webcam_snapshots_resort_time"
+        )
+        assert index.expressions[0].name == "resort_id"
+        assert str(index.expressions[1]) == "captured_at DESC"

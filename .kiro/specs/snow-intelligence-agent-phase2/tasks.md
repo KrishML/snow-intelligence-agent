@@ -34,10 +34,11 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - Implement `app/db/models/embeddings.py` with all four pgvector ORM models using `pgvector.sqlalchemy.Vector(1536)`
     - _Requirements: 15.1, 15.2, 15.3, 15.4_
 
-  - [x]* 2.3 Write smoke tests for Phase 2 schema
+  - [~]* 2.3 Write smoke tests for Phase 2 schema
     - Apply `alembic upgrade head` against test DB and assert all Phase 2 tables exist
     - Assert CHECK constraints reject invalid `source_type`, `sentiment`, `classification`, and `status` values
     - Assert pgvector extension is enabled and `vector(1536)` columns are queryable with the `<=>` operator
+    - Metadata tests and a temporary PostgreSQL/pgvector migration/query check are complete; automated live-database smoke/property tests remain.
     - _Requirements: 15.1–15.5_
 
 - [x] 3. OpenAI async client
@@ -95,11 +96,11 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - **Property 2: Qualitative DB Write Completeness** — generate resort lists of size N (1–30) with all external calls mocked; after `QualitativeSignalScorer` processes all N resorts, assert exactly N `qualitative_signals` records exist for that `weekly_run_id`
     - **Validates: Requirements 10.5**
 
-- [~] 6. Checkpoint — qualitative signal scorer
+- [x] 6. Checkpoint — qualitative signal scorer
   - Ensure all qualitative scorer tests pass, ask the user if questions arise.
 
-- [ ] 7. Webcam Classifier
-  - [ ] 7.1 Implement `WebcamClassifier` with Playwright capture and GPT-4o vision classification
+- [x] 7. Webcam Classifier
+  - [x] 7.1 Implement `WebcamClassifier` with Playwright capture and GPT-4o vision classification
     - Implement `WebcamClassifier.classify(resort) -> WebcamResult` using `playwright.async_api.async_playwright()`
     - On NULL `webcam_url`: immediately return `WebcamResult(classification='camera_offline', description='No webcam URL configured', file_path=None)`
     - Launch headless Chromium; `page.goto(url, timeout=5000)`; on timeout or nav error: return `camera_offline`
@@ -107,19 +108,20 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - On GPT-4o JSON parse failure: fall back to `camera_offline`
     - _Requirements: 11.1, 11.2, 11.3_
 
-  - [~] 7.2 Implement webcam bonus/penalty adjuster and `webcam_snapshots` DB write
+  - [x] 7.2 Implement webcam bonus/penalty adjuster and `webcam_snapshots` DB write
     - Implement `apply_webcam_adjustment(base_score: int, classification: str) -> int` as a pure function: `snow_good` → `min(20, base+3)`, `snow_poor` → `max(0, base-2)`, `no_snow` → `max(0, base-5)`, `camera_offline` → `base`
     - Write `WebcamSnapshot` ORM record to `webcam_snapshots` for every resort processed (including `camera_offline` cases)
     - _Requirements: 11.4, 11.5_
 
-  - [ ]* 7.3 Write property tests for webcam classifier
+  - [~]* 7.3 Write property tests for webcam classifier
     - Implement `tests/test_webcam.py` with `@given` / `@settings(max_examples=200, deadline=None)`
     - **Property 3: Webcam Snapshot DB Write Completeness** — generate resort lists with mixed NULL/non-NULL webcam URLs; mock Playwright and GPT-4o vision; assert exactly N records written (one per resort) with `camera_offline` for NULL URLs
     - **Property 4: Webcam Bonus/Penalty Bounds and Correctness** — generate base scores ∈ [0, 20] and all four classifications; assert result ∈ [0, 20] and matches the exact formula
     - **Validates: Requirements 11.1, 11.4, 11.5**
+    - Focused classifier/adjustment tests and a PostgreSQL write check pass; generated property tests against PostgreSQL remain.
 
-- [ ] 8. Integrate qualitative + webcam into weekly run orchestrator
-  - [~] 8.1 Extend `WeeklyRunOrchestrator` with Phase 2 pipeline steps
+- [x] 8. Integrate qualitative + webcam into weekly run orchestrator
+  - [x] 8.1 Extend `WeeklyRunOrchestrator` with Phase 2 pipeline steps
     - After Phase 1 gate/scoring step, add step 5: parallel qualitative + webcam scoring for all passing resorts (semaphore-limited to `settings.qualitative_concurrency`)
     - For each passing resort: call `QualitativeSignalScorer.score()`, call `WebcamClassifier.classify()`, call `apply_webcam_adjustment()`, accumulate results
     - Step 6: update `snow_scores.score_qualitative` for all passing resorts with the computed adjusted score
@@ -127,16 +129,17 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - Step 8: trigger delivery event (implemented in task 12)
     - _Requirements: 10.1–10.8, 11.1–11.5_
 
-  - [ ]* 8.2 Write integration test for extended weekly run orchestrator
+  - [~]* 8.2 Write integration test for extended weekly run orchestrator
     - Mock Open-Meteo, praw, feedparser, OpenAI, and Playwright; run `WeeklyRunOrchestrator.run()` end-to-end
     - Assert `snow_scores.score_qualitative` is no longer hardcoded to 10 for all resorts
     - Assert `qualitative_signals` records exist for each passing resort
     - Assert `webcam_snapshots` records exist for each passing resort
     - Assert final `score_total` reflects updated qualitative score
     - _Requirements: 10.5, 11.4_
+    - End-to-end behavior was exercised against temporary PostgreSQL; a repeatable automated integration test remains.
 
-- [ ] 9. Memory System
-  - [~] 9.1 Implement `MemorySystem.retrieve_context()`
+- [~] 9. Memory System
+  - [x] 9.1 Implement `MemorySystem.retrieve_context()`
     - Embed `query_text` using `openai_client.embed()` → 1536-dim vector
     - Execute 4 parallel pgvector cosine similarity queries using SQLAlchemy async raw SQL with the `<=>` operator
     - Respect the `LIMIT` values from Requirement 13.1: 3, 2, 3, 1 for the four tables; filter `resort_knowledge_embeddings` by `current_season()`; filter `session_summary_embeddings` by `created_at > now() - interval '30 days'`
@@ -144,24 +147,26 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - Return empty string (not an error) if no embeddings exist yet
     - _Requirements: 13.1, 13.2_
 
-  - [ ]* 9.2 Write property tests for memory retrieval
+  - [~]* 9.2 Write property tests for memory retrieval
     - Implement `tests/test_memory.py` with `@given` / `@settings(max_examples=100, deadline=None)` against a real PostgreSQL test DB with pgvector extension
     - **Property 6: Memory Retrieval Count Bounds** — populate embedding store with K random embeddings (K varies 0–20); query with max M; assert returned count == min(K, M) and results are ordered by similarity
     - **Validates: Requirements 13.1**
+    - Focused mocked tests and a temporary PostgreSQL retrieval check pass; generated live-database property tests remain.
 
-  - [~] 9.3 Implement `MemorySystem._deduplicate_preference()` and `extract_and_write()`
+  - [x] 9.3 Implement `MemorySystem._deduplicate_preference()` and `extract_and_write()`
     - `_deduplicate_preference(user_id, embedding) -> bool`: query `preference_embeddings` for user, return True if any existing embedding has cosine similarity >= 0.95 (i.e., cosine distance `<=>` <= 0.05)
     - `extract_and_write(user_id, session_id, messages)`: call GPT-4o-mini with session transcript to extract discrete preference statements; for each: embed → deduplicate check → write only if not duplicate
     - Write one `SessionSummaryEmbedding` record per session end
     - _Requirements: 13.3, 13.4, 13.5, 13.6_
 
-  - [ ]* 9.4 Write property tests for preference deduplication and round-trip
+  - [~]* 9.4 Write property tests for preference deduplication and round-trip
     - **Property 7: Preference Deduplication Idempotence** — for any preference text already written, writing the same text again should not change the count of that user's preference embeddings
     - **Property 8: Preference Embedding Round-Trip** — for any preference text written, querying with the original text embedding should return that record as rank-1 result
     - **Validates: Requirements 13.5, 13.7**
+    - Focused unit tests and PostgreSQL memory write/retrieval checks pass; generated deduplication and round-trip property tests remain.
 
-- [ ] 10. LangGraph Chat Agent
-  - [~] 10.1 Implement LangGraph `StateGraph` and tool registry (`app/chat/agent.py`)
+- [~] 10. LangGraph Chat Agent
+  - [x] 10.1 Implement LangGraph `StateGraph` and tool registry (`app/chat/agent.py`)
     - Define `AgentState` extending `MessagesState` with `session_id`, `user_id`, `memory_context`, `live_calls_remaining=10`, `plan_artifact_created=False`
     - Create `StateGraph(AgentState)` with `agent_node` (GPT-4o + bound tools) and `tools_node` (LangGraph `ToolNode`)
     - Add edges: `START → agent_node → conditional(tools_node | END)` → `agent_node`
@@ -174,7 +179,7 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - `fetch_live_snow`: async function calling `OpenMeteoClient.get_current_conditions()` + `get_5day_forecast()`; decrements `state.live_calls_remaining`; raises `ToolError("Rate limit reached")` if `live_calls_remaining <= 0`
     - `fetch_webcam`: async function returning latest `WebcamSnapshot` for resort; on no cache, calls `WebcamClassifier.classify()` live
     - `search_flights_readonly`: async function calling Amadeus Python SDK `shopping.flight_offers_search.get()`; returns top 5 offers formatted as dicts
-    - `search_hotels_readonly`: returns mock hotel data (Phase 2 placeholder — real hotel API integration is Phase 7)
+    - `search_hotels_readonly`: reports hotel search as unavailable (mock hotel data from the original placeholder requirement is not implemented; real hotel API integration is Phase 7)
     - `get_historical_reliability`: reads `snow_scores.historical_reliability_pct` for the latest weekly run for the resort
     - `create_plan_artifact`: writes `TripPlan` ORM record to DB with `status='draft'`; sets `state.plan_artifact_created=True`; raises `ToolError` if called again in same session
     - _Requirements: 12.6, 12.7, 12.8, 13.1_
@@ -184,50 +189,53 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - `send_message(session_id, user_message) -> AsyncIterator[str]`: invoke LangGraph graph with streaming; yield tokens as they arrive
     - `end_session(session_id)`: collect full message history from graph state, call `MemorySystem.extract_and_write()` asynchronously, clear session from checkpointer
     - _Requirements: 12.3, 12.4, 12.5_
+    - Active session history is in-process; Redis-backed 24-hour session persistence remains unimplemented.
 
-  - [ ]* 10.4 Write property test for rate limit enforcement
+  - [~]* 10.4 Write property test for rate limit enforcement
     - Implement `tests/test_chat_agent.py`
     - **Property 5: fetch_live_snow Rate Limit Enforcement** — generate call sequences of length N (N ranges 1–20); for any N > 10, calls 1–10 succeed and calls 11+ raise `ToolError`; for N <= 10, all calls succeed
     - **Validates: Requirements 12.6**
+    - A focused test verifies ten successful calls and rejection of the eleventh; generated call-sequence property coverage remains.
 
-  - [ ]* 10.5 Write smoke test for booking firewall
+  - [~]* 10.5 Write smoke test for booking firewall
     - Assert `app/chat/agent.py` tool registry contains exactly 7 tools with names matching the permitted list
     - Assert none of the registered tools reference Duffel, Stripe, or hotel booking endpoints
     - Assert `DUFFEL_API_KEY`, `STRIPE_API_KEY` are not present in the Chat_Agent's `os.environ` during testing
     - _Requirements: 12.2_
+    - Exact seven-tool registry and no-booking-tool behavior are tested; the environment-variable assertions remain.
 
-- [~] 11. Checkpoint — chat agent and memory
+- [x] 11. Checkpoint — chat agent and memory
   - Ensure all chat agent and memory tests pass, ask the user if questions arise.
 
-- [ ] 12. Delivery System
-  - [~] 12.1 Implement Telegram delivery (`app/delivery/telegram_bot.py`)
+- [x] 12. Delivery System
+  - [x] 12.1 Implement Telegram delivery (`app/delivery/telegram_bot.py`)
     - Implement `TelegramDelivery.send_weekly_report(top5, run_id) -> bool` using `python_telegram_bot.Bot.send_message()`
     - Format message using the template from the design: emoji headers, ranked list with depth/score/reliability/summary per resort
     - Implement `TelegramDelivery.send_failure_notification(failed_components, run_id) -> bool`
     - On `telegram.error.TelegramError`: log error, return `False`
     - _Requirements: 14.1, 14.3_
 
-  - [~] 12.2 Implement SendGrid email delivery (`app/delivery/email_sender.py`)
+  - [x] 12.2 Implement SendGrid email delivery (`app/delivery/email_sender.py`)
     - Create Jinja2 template at `app/delivery/templates/weekly_report.html` containing the top-5 resort table with score breakdown columns
     - Implement `SendGridDelivery.send_weekly_report(top5, run_id, recipient) -> bool` using the `sendgrid` Python SDK
     - Implement `SendGridDelivery.send_failure_notification(failed_components, run_id, recipient) -> bool`
     - On `sendgrid` API error: log error, return `False`
     - _Requirements: 14.2, 14.3_
 
-  - [~] 12.3 Wire delivery trigger into `WeeklyRunOrchestrator`
+  - [x] 12.3 Wire delivery trigger into `WeeklyRunOrchestrator`
     - Replace the Phase 1 delivery stub (log message) with a real `DeliveryService.dispatch(weekly_run_id, success)` call at the end of `WeeklyRunOrchestrator.run()`
     - `dispatch()` loads top-5 results from DB, sends Telegram first, sends email only if Telegram succeeded
     - On delivery failure: update `weekly_runs.error_log` with delivery failure details; do not change run `status` to `failed` (run itself succeeded)
     - _Requirements: 14.4_
 
-  - [ ]* 12.4 Write integration tests for delivery system
+  - [x]* 12.4 Write integration tests for delivery system
     - Implement `tests/test_delivery.py` with mocked `python_telegram_bot.Bot` and `sendgrid.SendGridAPIClient`
     - Test `send_weekly_report`: mock top-5 data; assert Telegram send called with correctly formatted message string; assert SendGrid send called with HTML containing all 5 resort names
     - Test failure notification: mock failed run; assert both channels receive failure message listing failed components
     - Test email-after-telegram sequencing: when Telegram fails, assert SendGrid is NOT called
     - _Requirements: 14.1, 14.2, 14.3, 14.4_
 
-- [ ] 13. FastAPI endpoints for chat session and plans
+- [~] 13. FastAPI endpoints for chat session and plans
   - [~] 13.1 Add Chat_Agent and plan endpoints to FastAPI app
     - `POST /api/chat/session` → calls `ChatSession.create_session()`, returns `{"session_id": str}`
     - `WS /api/chat/session/{session_id}/messages` → WebSocket handler streaming tokens from `ChatSession.send_message()`; closes gracefully on `end_session`
@@ -236,8 +244,9 @@ The tasks follow the extended weekly run flow: database schema first, then new s
     - `GET /api/plans/{plan_id}` → returns single `TripPlan` record
     - All endpoints require authentication header (use existing auth middleware from Phase 1)
     - _Requirements: 12.3, 12.4, 12.5_
+    - Endpoints use a configured static bearer token and single default user because no Phase 1 auth middleware/user model exists; plan reads are not user-scoped.
 
-  - [ ]* 13.2 Write integration tests for chat endpoints
+  - [x]* 13.2 Write integration tests for chat endpoints
     - Test `POST /api/chat/session` creates a session ID and returns 200
     - Test `POST /api/chat/session/{id}/end` triggers memory extraction (mock `MemorySystem.extract_and_write`)
     - Test `GET /api/plans` returns correct records for authenticated user
@@ -248,6 +257,7 @@ The tasks follow the extended weekly run flow: database schema first, then new s
   - Verify `alembic upgrade head` applies both migrations cleanly on a fresh database.
   - Verify `docker compose up` starts the extended service and the health endpoint responds.
   - Ask the user if questions arise.
+  - Current automated suite: 147 tests pass. PostgreSQL migration, pgvector indexes/query, memory persistence/retrieval, and weekly-run persistence were verified manually; automated live-PostgreSQL coverage and a Docker Compose health check remain.
 
 ---
 

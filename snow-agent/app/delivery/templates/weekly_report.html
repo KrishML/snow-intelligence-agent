@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Weekly Snow Intelligence Report</title>
+  </head>
+  <body>
+    <h1>Weekly Snow Intelligence Report</h1>
+    <p>Run {{ run_id }}</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Resort</th>
+          <th>Depth (cm)</th>
+          <th>Total</th>
+          <th>Depth score</th>
+          <th>Forecast score</th>
+          <th>Historical score</th>
+          <th>Qualitative score</th>
+          <th>Reliability</th>
+          <th>Conditions summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for resort in resorts %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ resort.name }}, {{ resort.country }}</td>
+          <td>{{ resort.depth_cm if resort.depth_cm is not none else "—" }}</td>
+          <td>{{ resort.score_total if resort.score_total is not none else "—" }}/100</td>
+          <td>{{ resort.score_depth if resort.score_depth is not none else "—" }}</td>
+          <td>{{ resort.score_forecast if resort.score_forecast is not none else "—" }}</td>
+          <td>{{ resort.score_historical if resort.score_historical is not none else "—" }}</td>
+          <td>{{ resort.score_qualitative if resort.score_qualitative is not none else "—" }}</td>
+          <td>
+            {{ resort.historical_reliability_pct
+               if resort.historical_reliability_pct is not none else "—" }}%
+          </td>
+          <td>{{ resort.summary or "No recent qualitative report." }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

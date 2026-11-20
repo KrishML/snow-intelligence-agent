@@ -180,6 +180,21 @@ async def test_embed_raises_on_wrong_dimension(mocker):
         await client.embed("some text")
 
 
+async def test_embed_many_preserves_input_order_and_validates_dimensions(mocker):
+    first = mocker.MagicMock(index=0, embedding=[0.1] * 1536)
+    second = mocker.MagicMock(index=1, embedding=[0.2] * 1536)
+    response = mocker.MagicMock(data=[second, first])
+    mock_create = mocker.AsyncMock(return_value=response)
+    mock_client = mocker.MagicMock()
+    mock_client.embeddings.create = mock_create
+    mocker.patch("openai.AsyncOpenAI", return_value=mock_client)
+
+    vectors = await OpenAIClient().embed_many(["first", "second"])
+
+    assert vectors == [[0.1] * 1536, [0.2] * 1536]
+    mock_create.assert_awaited_once()
+
+
 # ---------------------------------------------------------------------------
 # Tests: missing API key
 # ---------------------------------------------------------------------------

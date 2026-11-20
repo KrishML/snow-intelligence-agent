@@ -33,6 +33,19 @@ from app.db.session import AsyncSessionLocal
 # scripts/ package, regardless of the current working directory.
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 _RESORTS_JSON = _PROJECT_ROOT / "data" / "resorts.json"
+# Curated {resort name: webcam URL}; kept separate so URLs can be maintained by hand.
+_WEBCAMS_JSON = _PROJECT_ROOT / "data" / "webcams.json"
+
+
+def load_webcam_urls(path: Path = _WEBCAMS_JSON) -> dict[str, str]:
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as fh:
+        return {
+            name: url
+            for name, url in json.load(fh).items()
+            if isinstance(url, str) and url.startswith(("http://", "https://"))
+        }
 
 
 async def seed() -> None:
@@ -48,12 +61,17 @@ async def seed() -> None:
 
     # ── Connect and fetch existing (name, country) pairs ────────────────────
     async with AsyncSessionLocal() as session:
+        webcam_urls = load_webcam_urls()
         existing_rows = await session.execute(
-            select(Resort.name, Resort.country)
+            select(Resort)
         )
-        existing: set[tuple[str, str]] = {
-            (row.name, row.country) for row in existing_rows
-        }
+        existing_resorts = {(r.name, r.country): r for r in existing_rows.scalars()}
+        existing: set[tuple[str, str]] = set(existing_resorts)
+
+        # Backfill webcam URLs on resorts seeded before the curation file had them.
+        for (name, _country), resort in existing_resorts.items():
+            if not resort.webcam_url and name in webcam_urls:
+                resort.webcam_url = webcam_urls[name]
 
         # ── Build insert list ────────────────────────────────────────────────
         to_insert: list[Resort] = []
@@ -78,7 +96,7 @@ async def seed() -> None:
                 nearest_airports=rec["nearest_airports"],
                 piste_count=rec.get("piste_count"),
                 lift_count=rec.get("lift_count"),
-                webcam_url=rec.get("webcam_url"),
+                webcam_url=rec.get("webcam_url") or webcam_urls.get(rec["name"]),
                 is_active=rec.get("is_active", True),
             )
             to_insert.append(resort)
@@ -86,7 +104,7 @@ async def seed() -> None:
         # ── Bulk insert ──────────────────────────────────────────────────────
         if to_insert:
             session.add_all(to_insert)
-            await session.commit()
+        await session.commit()
 
     inserted = len(to_insert)
     print(f"Seeded {inserted} new resort(s), skipped {skipped} existing.")
