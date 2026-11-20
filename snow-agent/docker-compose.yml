@@ -6,13 +6,61 @@ services:
     env_file: .env
     environment:
       DATABASE_URL: postgresql+asyncpg://snow:snow@db:5432/snow_agent
+      REDIS_URL: redis://redis:6379/0
     depends_on:
       db:
         condition: service_healthy
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      redis:
+        condition: service_healthy
+    command: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8000/ready', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks: [chat_net]
 
+  # Isolated from `app`: different image, different env file, and no shared network,
+  # so the chat container has no route to this one.
+  booking:
+    build:
+      context: .
+      dockerfile: Dockerfile.booking
+    ports:
+      - "8001:8001"
+    env_file: .env.booking
+    environment:
+      DATABASE_URL: postgresql+asyncpg://snow:snow@db:5432/snow_agent
+    depends_on:
+      db:
+        condition: service_healthy
+      # `app` applies migrations on start; booking only needs its tables to exist.
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8001/ready', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks: [booking_net]
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [chat_net]
+
+  # The only service shared by both sides; it is on both networks.
   db:
-    image: postgres:16
+    image: pgvector/pgvector:pg16
     environment:
       POSTGRES_USER: snow
       POSTGRES_PASSWORD: snow
@@ -26,6 +74,12 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    networks: [chat_net, booking_net]
+
+networks:
+  chat_net:
+  booking_net:
 
 volumes:
   postgres_data:
+  redis_data:
